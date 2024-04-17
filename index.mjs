@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
-import { main, agentRequest } from "./main.mjs";
+import { req as normalReq } from "./req.mjs";
+import * as retryAgent from "./retry-agent.mjs";
 
 const server = createServer();
 
@@ -8,7 +9,7 @@ server.on("request", (req, res) => {
   switch (counter++) {
     case 0:
       res.writeHead(500);
-      res.end("failed");
+      res.end("should print failure!");
       return;
     case 1:
       req.destroy();
@@ -19,11 +20,13 @@ server.on("request", (req, res) => {
   }
 });
 
+retryAgent.init();
+
 server.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
-  main()
+  normalReq()
     .then(console.log)
-    .then(() => agentRequest())
+    .then(() => retryAgent.req())
     .then(console.log)
     .then(() => server.close());
 });

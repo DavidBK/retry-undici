@@ -1,19 +1,20 @@
 {
-  "name": "unidici",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "undici": "^6.13.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.12.7"
-  },
-  "packageManager": "pnpm@9.0.1+sha256.46d50ee2afecb42b185ebbd662dc7bdd52ef5be56bf035bb615cab81a75345df"
+	"name": "unidici",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"undici": "^6.13.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.0",
+		"@types/node": "^20.12.7"
+	},
+	"packageManager": "pnpm@9.0.1+sha256.46d50ee2afecb42b185ebbd662dc7bdd52ef5be56bf035bb615cab81a75345df"
 }

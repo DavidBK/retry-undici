@@ -1,13 +1,13 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
 import { setGlobalDispatcher } from "undici";
 
-import { agentRequest } from "../main.mjs";
-import mockAgent from "./mock-retry-agent.mjs";
+import { req } from "../retry-agent.mjs";
+import mockAgent from "./mocks/mock-retry-agent.mjs";
 
 setGlobalDispatcher(mockAgent);
 
 test("agentRequest", async () => {
-  const result = await agentRequest();
-  assert.deepStrictEqual(result, { message: "Hello, world?" });
+  const result = await req();
+  assert.deepStrictEqual(result, { message: "Hello, world" });
 });

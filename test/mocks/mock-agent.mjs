@@ -6,8 +6,8 @@ mockAgent.disableNetConnect();
 const client = mockAgent.get("http://localhost:3000");
 
 const intercept = client.intercept({
-  path: "/",
-  method: "GET",
+	path: "/",
+	method: "GET",
 });
 
 intercept.reply(200, { message: "Hello, world?" });
