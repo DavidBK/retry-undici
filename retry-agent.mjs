@@ -1,22 +1,23 @@
-import { Client, RetryAgent } from "undici";
+import { Client, RetryAgent, Agent } from "undici";
 
 const url = "http://localhost:3000";
 
-const defaultsOpt = {
+const opt = {
   maxRetries: 5,
   timeout: 1,
   timeoutFactor: 1,
 };
 
-export let agent;
+let retryAgent;
 
-export function init(client = new Client(url), opts = defaultsOpt) {
-  agent = new RetryAgent(client, opts);
-  return agent;
+export function init(agent = new Agent()) {
+  retryAgent = new RetryAgent(agent, opt);
+  return retryAgent;
 }
 
 export async function req() {
-  const { body } = await agent.request({
+  const { body } = await retryAgent.request({
+    origin: url,
     method: "GET",
     path: "/",
     headers: {
